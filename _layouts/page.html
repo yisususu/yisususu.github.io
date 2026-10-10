@@ -1,0 +1,6 @@
+---
+layout: default
+---
+<h1>{{ page.title | escape }}</h1>
+{% if page.nav_id == 'cv' and site.resume_pdf != '' %}<p><a href="{{ site.resume_pdf | relative_url }}">Download resume PDF</a></p>{% endif %}
+{{ content }}

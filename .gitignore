@@ -1,0 +1,16 @@
+_site/
+.jekyll-cache/
+.jekyll-metadata
+.sass-cache/
+.bundle/
+vendor/
+.DS_Store
+*.log
+.env
+.env.*
+.local/
+_drafts/
+CHANGELOG.md
+AGENT.md
+AGENTS.md
+CLAUDE.md

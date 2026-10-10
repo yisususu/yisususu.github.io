@@ -1,0 +1,29 @@
+---
+layout: default
+---
+<div class="home-copy">
+{{ content }}
+</div>
+{% if page.show_experience and page.experience.size > 0 %}
+<section class="home-section" aria-labelledby="experience-title">
+  <h2 id="experience-title">{{ page.experience_title | escape }}</h2>
+  <ol class="timeline">
+    {% for job in page.experience %}
+    <li>
+      <strong>{{ job.company | escape }}</strong>
+      <span class="timeline-period">{{ job.period | escape }}</span>
+      <span class="timeline-role">{{ job.role | escape }}</span>
+    </li>
+    {% endfor %}
+  </ol>
+</section>
+{% endif %}
+{% if page.show_recent_posts %}
+<section class="home-section" aria-labelledby="recent-posts-title">
+  <div class="section-heading">
+    <h2 id="recent-posts-title">{{ page.recent_posts_title | escape }}</h2>
+    <a href="{{ '/blog/' | relative_url }}">{{ page.all_posts_label | escape }} -&gt;</a>
+  </div>
+  {% include post-list.html limit=page.recent_posts_limit empty_message=page.empty_posts_message %}
+</section>
+{% endif %}

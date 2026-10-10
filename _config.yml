@@ -1,0 +1,68 @@
+title: Shun Yi
+description: Systems engineering, databases, and LLM inference infrastructure.
+url: "https://yisususu.github.io"
+baseurl: ""
+lang: en
+timezone: Europe/London
+author: Shun Yi
+
+github_url: "https://github.com/yisususu"
+linkedin_url: "https://www.linkedin.com/in/shun-yi-364901287/"
+resume_pdf: ""
+
+navigation:
+  - id: blog
+    url: /blog/
+  - id: work
+    url: /work/
+  - id: cv
+    url: /cv/
+
+markdown: kramdown
+highlighter: rouge
+permalink: /blog/:title/
+strict_front_matter: true
+future: false
+show_drafts: false
+kramdown:
+  smart_quotes: [apos, apos, quot, quot]
+
+plugins:
+  - jekyll-feed
+  - jekyll-seo-tag
+  - jekyll-sitemap
+
+defaults:
+  - scope:
+      path: ""
+    values:
+      layout: page
+      lang: en
+  - scope:
+      path: ""
+      type: posts
+    values:
+      layout: post
+      lang: en
+      permalink: /blog/:title/
+  - scope:
+      path: "_posts/zh"
+      type: posts
+    values:
+      lang: zh
+      permalink: /zh/blog/:title/
+
+exclude:
+  - README.md
+  - CHANGELOG.md
+  - .local
+  - AGENT.md
+  - AGENTS.md
+  - CLAUDE.md
+  - Gemfile
+  - Gemfile.lock
+  - vendor
+  - .bundle
+  - .jekyll-cache
+  - .sass-cache
+  - node_modules

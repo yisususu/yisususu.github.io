@@ -1,0 +1,52 @@
+<!doctype html>
+{%- assign current_lang = page.lang | default: 'en' -%}
+{%- assign counterpart = nil -%}
+{%- assign is_post = false -%}
+{%- if page.collection == 'posts' or page.layout == 'post' -%}
+  {%- assign is_post = true -%}
+  {%- assign other_lang = 'zh' -%}
+  {%- assign switch_label = '中文' -%}
+  {%- if current_lang == 'zh' -%}
+    {%- assign other_lang = 'en' -%}
+    {%- assign switch_label = 'EN' -%}
+  {%- endif -%}
+  {%- if page.translation_key and page.translation_key != '' -%}
+    {%- assign counterpart = site.posts | where: 'translation_key', page.translation_key | where: 'lang', other_lang | first -%}
+  {%- endif -%}
+{%- endif -%}
+<html lang="{{ current_lang }}">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="color-scheme" content="light dark">
+    {% seo %}
+    {% feed_meta %}
+    {% if counterpart %}<link rel="alternate" hreflang="{{ other_lang }}" href="{{ counterpart.url | absolute_url }}">{% endif %}
+    {% if page.redirect_to %}<meta http-equiv="refresh" content="0; url={{ page.redirect_to | relative_url }}">{% endif %}
+    <link rel="icon" href="{{ '/assets/favicon.svg' | relative_url }}" type="image/svg+xml">
+    <link rel="stylesheet" href="{{ '/assets/css/main.css' | relative_url }}">
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <div class="site-shell">
+      <header class="site-header">
+        <a class="wordmark" href="{{ '/' | relative_url }}">Shun Yi</a>
+        <nav aria-label="Main navigation">
+          <ul>
+            {% for item in site.navigation %}
+            <li><a href="{{ item.url | relative_url }}"{% if page.nav_id == item.id %} aria-current="page"{% elsif is_post and item.id == 'blog' %} aria-current="page"{% endif %}>{{ item.id }}</a></li>
+            {% endfor %}
+            {% if counterpart %}<li><a class="language-link" href="{{ counterpart.url | relative_url }}" lang="{{ other_lang }}" hreflang="{{ other_lang }}">[{{ switch_label }}]</a></li>{% endif %}
+          </ul>
+        </nav>
+      </header>
+      <main id="main">
+        {{ content }}
+      </main>
+      <footer class="site-footer">
+        <span>(c) {{ site.time | date: '%Y' }} Shun Yi</span>
+        <a href="{{ '/feed.xml' | relative_url }}">RSS</a>
+      </footer>
+    </div>
+  </body>
+</html>

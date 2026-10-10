@@ -1,0 +1,15 @@
+---
+layout: default
+---
+<article class="post">
+  <header class="post-header">
+    <p class="post-back"><a href="{{ '/blog/' | relative_url }}">&lt;- All posts</a></p>
+    <h1>{{ page.title | escape }}</h1>
+    <p class="post-meta"><time datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: '%Y-%m-%d' }}</time>{% if page.tags.size > 0 %} / {{ page.tags | join: ' / ' | escape }}{% endif %}</p>
+    {% if page.description %}<p class="post-description">{{ page.description | escape }}</p>{% endif %}
+    {% if page.cover and page.cover != '' %}
+    <figure class="post-cover"><img src="{{ page.cover | relative_url }}" alt="{{ page.cover_alt | default: page.title | escape }}" decoding="async"></figure>
+    {% endif %}
+  </header>
+  {{ content }}
+</article>
