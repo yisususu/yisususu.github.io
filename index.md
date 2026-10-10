@@ -22,7 +22,7 @@ experience:
 
 # Hi, I'm Shun.
 
-I'm Shun Yi, a Research Engineer at Huawei in Edinburgh, working on LLM inference infrastructure. My work focuses on request scheduling, performance optimisation, and system reliability.
+I'm Shun Yi, a AI Infra Engineer at Huawei in Edinburgh, working on LLM inference infrastructure. My work focuses on request scheduling, performance optimisation, and system reliability.
 
 Previously, I worked on MySQL and ClickHouse at Alibaba Cloud. I'm interested in the internals of large-scale database systems: how they process data efficiently, replicate state across nodes, and recover from failures. 
 
