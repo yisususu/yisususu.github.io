@@ -1,0 +1,23 @@
+{% assign dated = include.entries | where_exp: 'item', 'item.activity_date != nil' | sort: 'activity_date' | reverse %}
+{% assign undated = include.entries | where_exp: 'item', 'item.activity_date == nil' | sort: 'title' %}
+{% assign entries = dated | concat: undated %}
+<section class="work-section" id="{{ include.section_id }}" aria-labelledby="{{ include.section_id }}-title">
+  {% if include.section_id == 'contributions' %}<span id="open-source" class="legacy-anchor" aria-hidden="true"></span>{% endif %}
+  <h2 id="{{ include.section_id }}-title">{{ include.title | escape }}</h2>
+  {% if entries.size > 0 %}
+  <div class="work-entries">
+    {% for entry in entries %}
+    <details class="work-entry" id="{{ entry.slug | escape }}">
+      <summary>
+        <span class="work-entry-heading"><span class="work-entry-title">{{ entry.title | escape }}</span><span class="entry-meta">{% include entry-meta.html entry=entry %}</span></span>
+      </summary>
+      <div class="work-entry-body">
+        <p>{{ entry.summary | escape }}</p>
+        <p class="entry-read-more"><a href="{{ entry.url | relative_url }}">Read details -&gt;</a></p>
+        {% include entry-links.html entry=entry %}
+      </div>
+    </details>
+    {% endfor %}
+  </div>
+  {% else %}<p class="empty-posts">{{ include.empty_message | default: 'No entries yet.' | escape }}</p>{% endif %}
+</section>

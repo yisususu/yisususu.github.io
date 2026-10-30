@@ -1,0 +1,10 @@
+---
+layout: page
+---
+{{ content }}
+<nav class="work-jump-links" aria-label="Work sections">
+  <a href="#contributions">Contributions</a> / <a href="#projects">Projects</a> / <a href="#talks">Talks</a>
+</nav>
+{% include work-section.html entries=site.contributions title=page.contributions_title section_id='contributions' %}
+{% include work-section.html entries=site.projects title=page.projects_title section_id='projects' empty_message=page.projects_empty_message %}
+{% include work-section.html entries=site.talks title=page.talks_title section_id='talks' %}

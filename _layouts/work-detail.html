@@ -1,0 +1,14 @@
+---
+layout: default
+---
+<article class="work-detail">
+  {% capture back_url %}/work/#{{ page.section_id }}{% endcapture %}
+  <p class="post-back"><a href="{{ back_url | relative_url }}">&lt;- {{ page.back_label | escape }}</a></p>
+  <header>
+    <p class="entry-meta">{% include entry-meta.html entry=page %}</p>
+    <h1>{{ page.title | escape }}</h1>
+    <p class="entry-lead">{{ page.summary | escape }}</p>
+    {% include entry-links.html entry=page %}
+  </header>
+  <div class="entry-body">{{ content }}</div>
+</article>

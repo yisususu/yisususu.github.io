@@ -1,0 +1,5 @@
+{% if include.entry.links.size > 0 %}
+<ul class="entry-links" aria-label="{{ include.entry.title | escape }} references">
+  {% for link in include.entry.links %}<li><a href="{{ link.url | escape }}">{{ link.label | escape }}</a></li>{% endfor %}
+</ul>
+{% endif %}

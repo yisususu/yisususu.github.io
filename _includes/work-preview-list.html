@@ -1,0 +1,10 @@
+{% if include.entries.size > 0 %}
+<ul class="post-list">
+  {% for entry in include.entries limit:include.limit %}
+  <li>
+    <div class="post-list-heading"><a href="{{ entry.url | relative_url }}">{{ entry.title | escape }}</a>{% if entry.date_label %}<span class="entry-meta">{{ entry.date_label | escape }}</span>{% elsif entry.activity_date %}<time class="entry-meta" datetime="{{ entry.activity_date | escape }}">{{ entry.activity_date | date: '%B %Y' }}</time>{% endif %}</div>
+    <p>{{ entry.summary | escape }}</p>
+  </li>
+  {% endfor %}
+</ul>
+{% else %}<p class="empty-posts">No talks yet.</p>{% endif %}

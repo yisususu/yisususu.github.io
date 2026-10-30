@@ -1,29 +1,41 @@
 ---
 layout: default
 ---
-<div class="home-copy">
-{{ content }}
-</div>
-{% if page.show_experience and page.experience.size > 0 %}
-<section class="home-section" aria-labelledby="experience-title">
-  <h2 id="experience-title">{{ page.experience_title | escape }}</h2>
-  <ol class="timeline">
-    {% for job in page.experience %}
-    <li>
-      <strong>{{ job.company | escape }}</strong>
-      <span class="timeline-period">{{ job.period | escape }}</span>
-      <span class="timeline-role">{{ job.role | escape }}</span>
+<div class="home-copy portfolio-intro">{{ content }}</div>
+<section class="home-section" aria-labelledby="contributions-title">
+  <h2 id="contributions-title">{{ page.contributions_title | escape }}</h2>
+  {% assign dated = site.contributions | where_exp: 'item', 'item.activity_date != nil' | sort: 'activity_date' | reverse %}
+  {% assign undated = site.contributions | where_exp: 'item', 'item.activity_date == nil' | sort: 'title' %}
+  {% assign contributions = dated | concat: undated %}
+  <ol class="activity-timeline">
+    {% for entry in contributions limit:page.contributions_limit %}
+    <li class="activity-item">
+      <div class="activity-meta">{% include entry-meta.html entry=entry %}</div>
+      <article class="activity-card">
+        <h3><a href="{{ entry.url | relative_url }}">{{ entry.title | escape }}</a></h3>
+        <p>{{ entry.summary | escape }}</p>
+        {% if entry.credit_quote %}<blockquote><p>{{ entry.credit_quote | escape }}</p></blockquote>{% endif %}
+        {% include entry-links.html entry=entry %}
+      </article>
     </li>
     {% endfor %}
   </ol>
+  <p class="section-end-link"><a href="{{ '/work/#contributions' | relative_url }}">All contributions -&gt;</a></p>
 </section>
-{% endif %}
-{% if page.show_recent_posts %}
-<section class="home-section" aria-labelledby="recent-posts-title">
+<section class="home-section" aria-labelledby="blog-title">
   <div class="section-heading">
-    <h2 id="recent-posts-title">{{ page.recent_posts_title | escape }}</h2>
-    <a href="{{ '/blog/' | relative_url }}">{{ page.all_posts_label | escape }} -&gt;</a>
+    <h2 id="blog-title">{{ page.blog_title | escape }}</h2>
+    <a href="{{ '/blog/' | relative_url }}">All posts -&gt;</a>
   </div>
-  {% include post-list.html limit=page.recent_posts_limit empty_message=page.empty_posts_message %}
+  {% include post-list.html limit=page.blog_limit empty_message=page.blog_empty_message %}
 </section>
-{% endif %}
+<section class="home-section" aria-labelledby="talks-title">
+  <div class="section-heading">
+    <h2 id="talks-title">{{ page.talks_title | escape }}</h2>
+    <a href="{{ '/work/#talks' | relative_url }}">All talks -&gt;</a>
+  </div>
+  {% assign dated_talks = site.talks | where_exp: 'item', 'item.activity_date != nil' | sort: 'activity_date' | reverse %}
+  {% assign undated_talks = site.talks | where_exp: 'item', 'item.activity_date == nil' | sort: 'title' %}
+  {% assign talks = dated_talks | concat: undated_talks %}
+  {% include work-preview-list.html entries=talks limit=page.talks_limit %}
+</section>

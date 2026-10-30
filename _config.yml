@@ -17,6 +17,19 @@ navigation:
     url: /work/
   - id: cv
     url: /cv/
+  - id: about
+    url: /about/
+
+collections:
+  contributions:
+    output: true
+    permalink: /work/contributions/:name/
+  projects:
+    output: true
+    permalink: /work/projects/:name/
+  talks:
+    output: true
+    permalink: /work/talks/:name/
 
 markdown: kramdown
 highlighter: rouge
@@ -51,6 +64,31 @@ defaults:
     values:
       lang: zh
       permalink: /zh/blog/:title/
+
+  - scope:
+      path: ""
+      type: contributions
+    values:
+      layout: work-detail
+      nav_id: work
+      section_id: contributions
+      back_label: All contributions
+  - scope:
+      path: ""
+      type: projects
+    values:
+      layout: work-detail
+      nav_id: work
+      section_id: projects
+      back_label: All projects
+  - scope:
+      path: ""
+      type: talks
+    values:
+      layout: work-detail
+      nav_id: work
+      section_id: talks
+      back_label: All talks
 
 exclude:
   - README.md
