@@ -114,6 +114,7 @@ hr { border: 0; border-top: 1px solid var(--line); margin: 30px 0; }
 
 /* Portfolio */
 .portfolio-intro > p { color: var(--muted); }
+.project-cards { display: grid; gap: 16px; margin-top: 7px; }
 .activity-timeline { list-style: none; padding: 0 0 0 24px; margin: 20px 0 0; }
 .activity-item { position: relative; margin: 0; padding: 0 0 24px; }
 .activity-item + .activity-item { margin-top: 0; }

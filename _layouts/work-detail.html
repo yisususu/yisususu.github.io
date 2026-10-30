@@ -7,7 +7,7 @@ layout: default
   <header>
     <p class="entry-meta">{% include entry-meta.html entry=page %}</p>
     <h1>{{ page.title | escape }}</h1>
-    <p class="entry-lead">{{ page.summary | escape }}</p>
+    <p class="entry-lead">{{ page.summary | markdownify | remove: '<p>' | remove: '</p>' | strip }}</p>
     {% include entry-links.html entry=page %}
   </header>
   <div class="entry-body">{{ content }}</div>

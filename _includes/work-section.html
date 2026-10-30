@@ -12,7 +12,7 @@
         <span class="work-entry-heading"><span class="work-entry-title">{{ entry.title | escape }}</span><span class="entry-meta">{% include entry-meta.html entry=entry %}</span></span>
       </summary>
       <div class="work-entry-body">
-        <p>{{ entry.summary | escape }}</p>
+        <p>{{ entry.summary | markdownify | remove: '<p>' | remove: '</p>' | strip }}</p>
         <p class="entry-read-more"><a href="{{ entry.url | relative_url }}">Read details -&gt;</a></p>
         {% include entry-links.html entry=entry %}
       </div>

@@ -2,8 +2,10 @@
 layout: home
 lang: en
 title: Recent work
-description: Recent contributions, technical writing, and talks by Shun Yi.
+description: Personal projects, open-source contributions, technical writing, and talks by Shun Yi.
 permalink: /
+projects_title: My projects
+projects_limit: 3
 contributions_title: Open-source contributions
 contributions_limit: 3
 blog_title: Blog
@@ -15,4 +17,4 @@ talks_limit: 3
 
 # Recent work
 
-Contributions, technical notes, and talks on databases and LLM infrastructure.
+Projects, contributions, and technical notes on databases and LLM infrastructure.

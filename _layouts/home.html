@@ -2,6 +2,26 @@
 layout: default
 ---
 <div class="home-copy portfolio-intro">{{ content }}</div>
+{% if site.projects.size > 0 %}
+<section class="home-section" aria-labelledby="projects-title">
+  <div class="section-heading">
+    <h2 id="projects-title">{{ page.projects_title | escape }}</h2>
+    <a href="{{ '/work/#projects' | relative_url }}">All projects -&gt;</a>
+  </div>
+  {% assign dated_projects = site.projects | where_exp: 'item', 'item.activity_date != nil' | sort: 'activity_date' | reverse %}
+  {% assign undated_projects = site.projects | where_exp: 'item', 'item.activity_date == nil' | sort: 'title' %}
+  {% assign projects = dated_projects | concat: undated_projects %}
+  <div class="project-cards">
+    {% for entry in projects limit:page.projects_limit %}
+    <article class="activity-card">
+      <h3><a href="{{ entry.url | relative_url }}">{{ entry.title | escape }}</a></h3>
+      <p>{{ entry.summary | markdownify | remove: '<p>' | remove: '</p>' | strip }}</p>
+      {% include entry-links.html entry=entry %}
+    </article>
+    {% endfor %}
+  </div>
+</section>
+{% endif %}
 <section class="home-section" aria-labelledby="contributions-title">
   <h2 id="contributions-title">{{ page.contributions_title | escape }}</h2>
   {% assign dated = site.contributions | where_exp: 'item', 'item.activity_date != nil' | sort: 'activity_date' | reverse %}
@@ -13,7 +33,7 @@ layout: default
       <div class="activity-meta">{% include entry-meta.html entry=entry %}</div>
       <article class="activity-card">
         <h3><a href="{{ entry.url | relative_url }}">{{ entry.title | escape }}</a></h3>
-        <p>{{ entry.summary | escape }}</p>
+        <p>{{ entry.summary | markdownify | remove: '<p>' | remove: '</p>' | strip }}</p>
         {% if entry.credit_quote %}<blockquote><p>{{ entry.credit_quote | escape }}</p></blockquote>{% endif %}
         {% include entry-links.html entry=entry %}
       </article>
