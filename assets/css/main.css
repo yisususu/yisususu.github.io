@@ -129,9 +129,11 @@ hr { border: 0; border-top: 1px solid var(--line); margin: 30px 0; }
 .activity-card h3 a { color: var(--text); }
 .activity-card h3 a:hover { color: var(--link); }
 .activity-card > p { font-size: 15px; margin: 0; }
-.project-card-heading { display: flex; align-items: center; gap: 12px; margin-bottom: 10px; }
-.project-card-heading h3 { margin: 0; min-width: 0; }
-.project-thumbnail { display: block; width: 48px; height: 48px; flex: 0 0 48px; object-fit: contain; border-radius: 6px; background: #fcfcfa; }
+.project-card.has-thumbnail { display: grid; grid-template-columns: 144px minmax(0, 1fr); align-items: center; gap: 20px; padding: 10px 20px 10px 10px; }
+.project-card-content { min-width: 0; }
+.project-card-content > p { font-size: 15px; line-height: 1.6; margin: 0; }
+.project-thumbnail { display: block; width: 144px; height: 144px; object-fit: contain; padding: 8px; border: 1px solid var(--line); border-radius: 8px; background: #fcfcfa; }
+.project-logo { display: block; width: 100%; height: auto; margin: 0 0 28px; border-radius: 5px; }
 .activity-card blockquote { margin: 14px 0 0; padding-left: 12px; }
 .activity-card blockquote p { font-size: 14px; margin: 0; }
 .entry-links { display: flex; flex-wrap: wrap; gap: 5px 18px; list-style: none; padding: 0; margin: 14px 0 0; font-size: 13px; }
@@ -161,12 +163,17 @@ hr { border: 0; border-top: 1px solid var(--line); margin: 30px 0; }
 .work-detail h1 { margin-bottom: 15px; }
 .entry-lead { color: var(--muted); }
 .entry-body h2 { font-size: 19px; }
+@media (max-width: 640px) {
+  .project-card.has-thumbnail { grid-template-columns: minmax(0, 1fr); gap: 16px; }
+}
 @media (max-width: 480px) {
   .activity-timeline { padding-left: 18px; }
   .activity-item::before { left: -14px; }
   .activity-item::after { left: -18px; }
   .activity-card { padding: 14px; }
+  .project-card.has-thumbnail { padding: 10px 14px 10px 10px; }
   .activity-card h3 { font-size: 16px; }
+  .project-thumbnail { width: 120px; height: 120px; }
   .activity-meta, .entry-meta { font-size: 12px; }
   .section-end-link { margin-left: 18px; }
 }
