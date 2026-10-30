@@ -2,6 +2,8 @@
 title: Polyjuice Stream
 project: Go / LLM infrastructure
 activity_date: "2026-10-28"
+thumbnail: /assets/images/projects/polyjuice-stream.svg
+thumbnail_alt: Smiling lavender potion bottle, the Polyjuice Stream logo
 summary: |
   Like Polyjuice Potion in [Harry Potter](https://www.harrypotter.com/fact-file/plants-and-potions/polyjuice-potion), your CPU gets to play a GPU.  
   Fake LLM replies. Real streams. No accelerator required.

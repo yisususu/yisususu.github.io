@@ -14,7 +14,14 @@ layout: default
   <div class="project-cards">
     {% for entry in projects limit:page.projects_limit %}
     <article class="activity-card">
+      {% if entry.thumbnail %}
+      <div class="project-card-heading">
+        <img class="project-thumbnail" src="{{ entry.thumbnail | relative_url }}" alt="{{ entry.thumbnail_alt | escape }}" width="48" height="48" decoding="async">
+        <h3><a href="{{ entry.url | relative_url }}">{{ entry.title | escape }}</a></h3>
+      </div>
+      {% else %}
       <h3><a href="{{ entry.url | relative_url }}">{{ entry.title | escape }}</a></h3>
+      {% endif %}
       <p>{{ entry.summary | markdownify | remove: '<p>' | remove: '</p>' | strip }}</p>
       {% include entry-links.html entry=entry %}
     </article>
